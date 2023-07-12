@@ -56,21 +56,39 @@ export function Notes() {
     return (
         <div className={block()}>
             <h1>
-                Notes <button onClick={updateNotes}>Update</button>
+                Notes{' '}
+                <button className={block('btn-update')} onClick={updateNotes}>
+                    Upd
+                </button>
             </h1>
-            <ul>
+            <ul className={block('note-list')}>
                 {notes.map((n) => (
-                    <div key={n.id}>
+                    <li key={n.id} className={block('note')}>
                         {n.content}
-                        <button type="button" onClick={() => handleDelete(n.id)}>
-                            delete
+                        <button
+                            className={block('btn-delete')}
+                            type="button"
+                            onClick={() => handleDelete(n.id)}
+                        >
+                            X
                         </button>
-                    </div>
+                    </li>
                 ))}
             </ul>
-            <form ref={formRef} onSubmit={onNoteAdd}>
-                <textarea name="note" id="note" cols={30} rows={10}></textarea>
-                <button type="submit">Add</button>
+            <form ref={formRef} className={block('form')} onSubmit={onNoteAdd}>
+                <label className={block('form-label')}>
+                    <span className={block('form-title')}>New Note</span>
+                    <textarea
+                        className={block('form-control')}
+                        name="note"
+                        id="note"
+                        cols={30}
+                        rows={10}
+                    ></textarea>
+                    <button className={block('form-btn-submit')} type="submit">
+                        Add
+                    </button>
+                </label>
             </form>
         </div>
     );
